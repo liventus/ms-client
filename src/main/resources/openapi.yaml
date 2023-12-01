@@ -1,0 +1,193 @@
+---
+openapi: 3.0.3
+info:
+  title: Customer Microservice
+  description: API to manage clients
+  version: 0.0.1
+
+tags:
+- name: Client
+  description: la API esta enfocado al manejo de la data de clientes.
+paths:
+  /client:
+    get:
+      tags:
+      - Client
+      summary: Obtener información de una cuenta bancaria
+      operationId: getClient
+      parameters:
+      - name: tipoDeDocumento
+        required: true
+        in: header
+        description: 'Header tipo de documento. Ej: 01, 02, 03, 04'
+        schema:
+          pattern: ^(01|04|06|07)$
+          type: string
+          example: 01
+      - name: numeroDeDocumento
+        required: true
+        in: header
+        description: 'Header numero de documento. Ej: 123456787'
+        schema:
+          pattern: ^[0-9]{8,12}$
+          type: string
+          example: 12345678
+      responses:
+        "200":
+          description: Información del cliente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponse'
+        default:
+          description: Información detallada de la excepcion.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+
+    put:
+      tags:
+      - Client
+      summary: Actualizar información de un cliente
+      operationId: updateClient
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRequest'
+      responses:
+        "200":
+          description: Información de la cuenta bancaria actualizada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponse'
+        default:
+          description: Información detallada de la excepcion.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+    post:
+      tags:
+      - Client
+      summary: Obtener información de una cuenta bancaria
+      operationId: metodo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientRequest'
+        required: true
+      responses:
+        "200":
+          description: Información detallada del cliente creado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientResponse'
+        default:
+          description: Información detallada de la excepcion.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+    delete:
+      tags:
+      - Client
+      summary: Eliminar cliente
+      operationId: deleteClient
+      responses:
+        "204":
+          description: eliminar cliente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+        default:
+          description: Información detallada de la excepcion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+  /clients:
+    get:
+      tags:
+        - Client
+      summary: Obtener información de todas los clientes del banco
+      operationId: getClientAll
+      responses:
+        "200":
+          description: lista de clientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListClientes'
+        default:
+          description: Información detallada de la excepcion
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/status'
+components:
+  schemas:
+    ClientRequest:
+      type: object
+      properties:
+        tipoDeDocumento:
+          type: string
+        numeroDeDocumento:
+          type: string
+        direccion:
+          type: string
+        tipo:
+          type: string
+        nombre:
+          type: string
+        apellido:
+          type: string
+        clienteVip:
+          type: boolean
+        ruc:
+          type: string
+        razonSocial:
+          type: string
+        clientePyme:
+          type: boolean
+    ClientResponse:
+      type: object
+      properties:
+        tipoDeDocumento:
+          type: string
+        numeroDeDocumento:
+          type: string
+        direccion:
+          type: string
+        tipo:
+          type: string
+        nombre:
+          type: string
+        apellido:
+          type: string
+        clienteVip:
+          type: boolean
+        ruc:
+          type: string
+        razonSocial:
+          type: string
+        clientePyme:
+          type: boolean
+    status:
+      type: object
+      properties:
+        code:
+          type: string
+        description:
+          type: string
+    ListClientes:
+      type: array
+      items:
+        $ref: '#/components/schemas/ClientResponse'
+
