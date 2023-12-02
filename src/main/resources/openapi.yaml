@@ -74,7 +74,7 @@ paths:
       tags:
       - Client
       summary: Obtener información de una cuenta bancaria
-      operationId: metodo
+      operationId: addClient
       requestBody:
         content:
           application/json:
@@ -122,9 +122,9 @@ paths:
         "200":
           description: lista de clientes
           content:
-            application/json:
+            application/stream+json:
               schema:
-                $ref: '#/components/schemas/ListClientes'
+                $ref: '#/components/schemas/ClientResponse'
         default:
           description: Información detallada de la excepcion
           content:

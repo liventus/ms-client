@@ -23,15 +23,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.reactivex.rxjava3</groupId>
-			<artifactId>rxjava</artifactId>
-		</dependency>
-		<!--para bootstrap , congiracion en yml-->
+
+		<!--para bootstrap , congiracion en yml
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter</artifactId>
-		</dependency>
+		</dependency>-->
 		<!--para get y setters en la anotacion-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -89,6 +86,11 @@
 			<version>1.3.2</version>
 			<scope>provided</scope>
 		</dependency>
+
+
+
+
+
 	</dependencies>
 	<!--esto aparece por spring initializor-->
 	<dependencyManagement>
@@ -136,6 +138,7 @@
 							<generatorName>spring</generatorName>
 							<apiPackage>com.lizana.msclient.api</apiPackage>
 							<modelPackage>com.lizana.msclient.model</modelPackage>
+							<library>spring-boot</library>
 							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
 							<configOptions>
 								<reactive>true</reactive>
