@@ -20,7 +20,7 @@ public class ClientService implements ClientApiDelegate {
 
     @Override
     public Mono<ResponseEntity<ClientObject>> addClient(Mono<ClientObject> clientObject, ServerWebExchange exchange) {
-        return clientBusiness.saveClient(clientObject,exchange);
+        return clientBusiness.saveClient(clientObject);
     }
 
     @Override

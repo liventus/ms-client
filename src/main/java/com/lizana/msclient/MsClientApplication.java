@@ -3,8 +3,8 @@ package com.lizana.msclient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
 
+@SpringBootApplication
 public class MsClientApplication {
 
 	public static void main(String[] args) {
