@@ -5,6 +5,7 @@ import com.lizana.msclient.model.Status;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
@@ -19,7 +20,7 @@ public interface ClientBusiness {
 
     Mono<ResponseEntity<ClientObject>> updateClient(Mono<ClientObject> clientObject, ServerWebExchange exchange);
 
-    Mono<ResponseEntity<ClientObject>> getClientAll(ServerWebExchange exchange);
+    Mono<ResponseEntity<Flux<ClientObject>>> getClientAll(ServerWebExchange exchange);
 
 
 }

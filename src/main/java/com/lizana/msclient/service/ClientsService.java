@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
@@ -18,8 +19,9 @@ public class ClientsService implements ClientsApiDelegate {
     @Autowired
     ClientBusiness clientBusiness;
 
+
     @Override
-    public Mono<ResponseEntity<ClientObject>> getClientAll(ServerWebExchange exchange) {
-        return ClientsApiDelegate.super.getClientAll(exchange);
+    public Mono<ResponseEntity<Flux<ClientObject>>> getClientAll(ServerWebExchange exchange) {
+        return clientBusiness.getClientAll(exchange);
     }
 }

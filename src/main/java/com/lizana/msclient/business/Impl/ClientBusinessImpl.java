@@ -24,6 +24,7 @@ public class ClientBusinessImpl implements ClientBusiness {
     @Override
     public Mono<ResponseEntity<ClientObject>> saveClient(Mono<ClientObject> clientObject) {
 
+
         return clientObject.map(ClientUtil::dtoToEntity)
                 .flatMap(clientrepository::insert)
                 .map(ClientUtil::entityToDto)
@@ -47,14 +48,19 @@ public class ClientBusinessImpl implements ClientBusiness {
     public Mono<ResponseEntity<ClientObject>> getClient(String tipoDeDocumento, String numeroDeDocumento, ServerWebExchange exchange) {
         // debe buscar por tipo y numero de documento
         // si encontro mostrar
-        // si no encontro debe pintar que cliente no existe
+        // si no encontro debe pintar que cliente no existe (notFound)
+/*
+        return clientrepository.findBytipoDeDocumentoAndnumeroDeDocumento(tipoDeDocumento, numeroDeDocumento)
+                .map(client -> ResponseEntity.ok().body(client))
+                .defaultIfEmpty(ResponseEntity.notFound().build());*/
+return null;
 
-        return null;
     }
 
     @Override
     public Mono<ResponseEntity<ClientObject>> updateClient(Mono<ClientObject> clientObject, ServerWebExchange exchange) {
         //primero buscar con tipo y numero de cliente, si no encuentra al cliente debe pintar que no existe
+
         // traer el objeto con su id
         // luego setear todos los objetos nuevos
         // debe guardar
@@ -63,12 +69,13 @@ public class ClientBusinessImpl implements ClientBusiness {
     }
 
     @Override
-    public Mono<ResponseEntity<ClientObject>> getClientAll(ServerWebExchange exchange) {
+    public Mono<ResponseEntity<Flux<ClientObject>>> getClientAll(ServerWebExchange exchange) {
 
         // debe traer todos los clientes con sus id si es posible
-
-        Flux<ClientObject> respuesta = clientrepository.findAll().map(ClientUtil::entityToDto);
+        Flux<ClientObject> clientObjectFlux = clientrepository.findAll().map(ClientUtil::entityToDto);
         // aca me trae un flux y debo devolver un Mono.
-        return null;
+        return Mono.just(ResponseEntity.ok().body(clientObjectFlux))
+                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+
     }
 }
