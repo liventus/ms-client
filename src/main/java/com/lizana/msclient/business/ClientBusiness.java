@@ -11,9 +11,9 @@ import reactor.core.publisher.Mono;
 
 public interface ClientBusiness {
 
-    Mono<ResponseEntity<ClientObject>> saveClient(Mono<ClientObject> clientObject);
+    Mono<ResponseEntity<ClientObject>> saveClient(Mono<ClientObject> clientObject, ServerWebExchange exchange);
 
-    Mono<ResponseEntity<Status>> deleteClient(ServerWebExchange exchange);
+    Mono<ResponseEntity<Status>> deleteClient(String tipoDeDocumento, String numeroDeDocumento, ServerWebExchange exchange);
 
     Mono<ResponseEntity<ClientObject>> getClient(String tipoDeDocumento, String numeroDeDocumento, ServerWebExchange exchange);
 

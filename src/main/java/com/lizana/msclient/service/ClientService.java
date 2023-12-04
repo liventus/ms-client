@@ -20,21 +20,21 @@ public class ClientService implements ClientApiDelegate {
 
     @Override
     public Mono<ResponseEntity<ClientObject>> addClient(Mono<ClientObject> clientObject, ServerWebExchange exchange) {
-        return clientBusiness.saveClient(clientObject);
+        return clientBusiness.saveClient(clientObject,exchange);
     }
 
     @Override
-    public Mono<ResponseEntity<Status>> deleteClient(ServerWebExchange exchange) {
-        return ClientApiDelegate.super.deleteClient(exchange);
+    public Mono<ResponseEntity<Status>> deleteClient(String tipoDeDocumento, String numeroDeDocumento, ServerWebExchange exchange) {
+        return clientBusiness.deleteClient(tipoDeDocumento,numeroDeDocumento,exchange);
     }
 
     @Override
     public Mono<ResponseEntity<ClientObject>> getClient(String tipoDeDocumento, String numeroDeDocumento, ServerWebExchange exchange) {
-        return ClientApiDelegate.super.getClient(tipoDeDocumento, numeroDeDocumento, exchange);
+        return clientBusiness.getClient(tipoDeDocumento,numeroDeDocumento,exchange);
     }
 
     @Override
     public Mono<ResponseEntity<ClientObject>> updateClient(Mono<ClientObject> clientObject, ServerWebExchange exchange) {
-        return ClientApiDelegate.super.updateClient(clientObject, exchange);
+        return clientBusiness.updateClient(clientObject,exchange);
     }
 }

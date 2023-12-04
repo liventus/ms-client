@@ -10,6 +10,6 @@ import reactor.core.publisher.Mono;
 @Repository //, estás indicando a Spring que gestione esta clase como un bean de repositorio. debe ser interface.
 public interface Clientrepository extends ReactiveMongoRepository<ClientEntity,String> {
 
-    //Mono<ClientObject> findBytipoDeDocumentoAndnumeroDeDocumento(String tipoDeDocumento, String numeroDeDocumento);
+    Mono<ClientEntity> findByTipoDeDocumentoAndNumeroDeDocumento(String tipoDeDocumento, String numeroDeDocumento);
 
 }

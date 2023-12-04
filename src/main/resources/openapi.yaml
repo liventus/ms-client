@@ -99,6 +99,23 @@ paths:
       - Client
       summary: Eliminar cliente
       operationId: deleteClient
+      parameters:
+        - name: tipoDeDocumento
+          required: true
+          in: header
+          description: 'Header tipo de documento. Ej: 01, 02, 03, 04'
+          schema:
+            pattern: ^(01|04|06|07)$
+            type: string
+            example: 01
+        - name: numeroDeDocumento
+          required: true
+          in: header
+          description: 'Header numero de documento. Ej: 123456787'
+          schema:
+            pattern: ^[0-9]{8,12}$
+            type: string
+            example: 12345678
       responses:
         "204":
           description: eliminar cliente
