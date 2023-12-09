@@ -3,8 +3,11 @@ package com.lizana.msclient.util;
 
 import com.lizana.msclient.entity.ClientEntity;
 import com.lizana.msclient.model.ClientObject;
+import com.lizana.msclient.model.StatusResponse;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 
 @NoArgsConstructor
@@ -20,5 +23,15 @@ public class ClientUtil {
         ClientEntity clientEntity = new ClientEntity();
         BeanUtils.copyProperties(clientObject, clientEntity);
         return clientEntity;
+    }
+
+    public  static ResponseEntity<StatusResponse> setStatusResponse(HttpStatus http, ClientObject clientObject){
+        StatusResponse statusResponse = new StatusResponse();
+        statusResponse.setCode(http.value());
+        statusResponse.setDescription("dasd");
+        statusResponse.setDetail(clientObject);
+
+
+        return ResponseEntity.status(HttpStatus.CREATED).body( statusResponse);
     }
 }
