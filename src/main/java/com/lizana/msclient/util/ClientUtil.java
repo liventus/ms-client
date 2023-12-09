@@ -28,7 +28,7 @@ public class ClientUtil {
     public  static ResponseEntity<StatusResponse> setStatusResponse(HttpStatus http, ClientObject clientObject){
         StatusResponse statusResponse = new StatusResponse();
         statusResponse.setCode(http.value());
-        statusResponse.setDescription("dasd");
+        statusResponse.setDescription(http.name());
         statusResponse.setDetail(clientObject);
 
 

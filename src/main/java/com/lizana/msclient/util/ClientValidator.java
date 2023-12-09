@@ -12,7 +12,7 @@ public class ClientValidator {
 
 
         if (!(clientObject.getTipo().equals("personal") || clientObject.getTipo().equals("empresarial"))) {
-            throw new ValidationException(HttpStatus.BAD_REQUEST.value(), "debe ser de tipo personal o empresarial");
+            throw new ValidationException(HttpStatus.BAD_REQUEST.value(), "debe ser de tipo personal o empresarial",clientObject);
         }
 
 
