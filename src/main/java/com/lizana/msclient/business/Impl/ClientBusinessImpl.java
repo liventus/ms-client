@@ -66,7 +66,7 @@ public class ClientBusinessImpl implements ClientBusiness {
         // si encontro mostrar
         return clientrepository.findByTipoDeDocumentoAndNumeroDeDocumento(tipoDeDocumento, numeroDeDocumento)
                 .map(ClientUtil::entityToDto)
-                .map(x->ClientUtil.setStatusResponse(HttpStatus.CREATED,x));
+                .map(x->ClientUtil.setStatusResponse(HttpStatus.OK,x));
     }
 
 
