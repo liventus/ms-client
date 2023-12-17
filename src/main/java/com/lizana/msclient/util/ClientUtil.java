@@ -13,25 +13,25 @@ import org.springframework.http.ResponseEntity;
 @NoArgsConstructor
 public class ClientUtil {
 
-    public static ClientObject entityToDto(ClientEntity clientEntity) {
-        ClientObject clientObject = new ClientObject();
-        BeanUtils.copyProperties(clientEntity, clientObject);
-        return clientObject;
-    }
+  public static ClientObject entityToDto(ClientEntity clientEntity) {
+    ClientObject clientObject = new ClientObject();
+    BeanUtils.copyProperties(clientEntity, clientObject);
+    return clientObject;
+  }
 
-    public static ClientEntity dtoToEntity(ClientObject clientObject) {
-        ClientEntity clientEntity = new ClientEntity();
-        BeanUtils.copyProperties(clientObject, clientEntity);
-        return clientEntity;
-    }
+  public static ClientEntity dtoToEntity(ClientObject clientObject) {
+    ClientEntity clientEntity = new ClientEntity();
+    BeanUtils.copyProperties(clientObject, clientEntity);
+    return clientEntity;
+  }
 
-    public  static ResponseEntity<StatusResponse> setStatusResponse(HttpStatus http, ClientObject clientObject){
-        StatusResponse statusResponse = new StatusResponse();
-        statusResponse.setCode(http.value());
-        statusResponse.setDescription(http.name());
-        statusResponse.setDetail(clientObject);
+  public static ResponseEntity<StatusResponse> setStatusResponse(HttpStatus http, ClientObject clientObject) {
+    StatusResponse statusResponse = new StatusResponse();
+    statusResponse.setCode(http.value());
+    statusResponse.setDescription(http.name());
+    statusResponse.setDetail(clientObject);
 
 
-        return ResponseEntity.status(HttpStatus.CREATED).body( statusResponse);
-    }
+    return ResponseEntity.status(HttpStatus.CREATED).body(statusResponse);
+  }
 }

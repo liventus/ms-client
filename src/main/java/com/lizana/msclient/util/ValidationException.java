@@ -13,7 +13,7 @@ public class ValidationException extends RuntimeException {
     private  StatusResponse statusResponse;
 
     public ValidationException(int codigo, String descripcion, ClientObject clientObject) {
-        super(descripcion);
+
         this.statusResponse = new StatusResponse();
         this.statusResponse.setCode(codigo);
         this.statusResponse.setDescription(descripcion);
