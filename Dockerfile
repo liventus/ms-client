@@ -1,11 +1,13 @@
-# Usa una imagen base de OpenJDK
+
 FROM openjdk:17
+# Copiar entrypoint.sh y darle permisos de ejecución
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# Copia el archivo JAR de tu aplicación al contenedor
-COPY target/reto-tecnico-0.0.1-SNAPSHOT.jar /app.jar
+ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/wait-for-it.sh
+RUN chmod +x /usr/local/bin/wait-for-it.sh
 
-# Expone el puerto en el que se ejecutará tu aplicación
-EXPOSE 8080
+COPY target/ms-client-0.0.1-SNAPSHOT.jar /app.jar
 
-# Comando para ejecutar la aplicación
-CMD ["java", "-jar", "/app.jar"]
+# Establecer entrypoint.sh como el punto de entrada
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

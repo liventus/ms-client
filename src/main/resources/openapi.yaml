@@ -1,5 +1,4 @@
----
-openapi: 3.0.3
+openapi: 3.0.0
 info:
   title: Customer Microservice
   description: API to manage clients
@@ -162,6 +161,7 @@ components:
         id:
           type: string
         tipoDeDocumento:
+          pattern: ^[0-9]{8,12}$
           type: string
         numeroDeDocumento:
           type: string
@@ -176,6 +176,7 @@ components:
         clienteVip:
           type: boolean
         ruc:
+          pattern: ^[0-9]{8,12}$
           type: string
         razonSocial:
           type: string

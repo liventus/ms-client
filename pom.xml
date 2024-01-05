@@ -68,7 +68,7 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>3.0.0</version>
         </dependency>
-        <!--soporta validacion de contrata-->
+        <!--soporta validacion de contrata ======================================-cambiar version -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -118,26 +118,20 @@
         </dependency>
 
 
-
         <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.10.0</version>
+            <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>5.4.0</version>
-            <scope>test</scope>
-        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter -->
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>5.4.0</version>
+            <version>5.7.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -157,8 +151,6 @@
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
             <version>4.0.3</version>
         </dependency>
-
-
 
 
     </dependencies>
@@ -181,17 +173,17 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <!--aca pide excluir lombok , lo cual impacta a la imprtacion lombok iniciado-->
-                <!--				<configuration>
-                                    <image>
-                                        <builder>paketobuildpacks/builder-jammy-base:latest</builder>
-                                    </image>
-                                    <excludes>
-                                        <exclude>
-                                            <groupId>org.projectlombok</groupId>
-                                            <artifactId>lombok</artifactId>
-                                        </exclude>
-                                    </excludes>
-                                </configuration>-->
+                <configuration>
+                    <image>
+                        <builder>paketobuildpacks/builder-jammy-base:latest</builder>
+                    </image>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <!--configuracion de opanapi para generar-->
             <plugin>
@@ -277,7 +269,6 @@
                     </execution>
                 </executions>
             </plugin>
-
 
 
         </plugins>

@@ -19,10 +19,6 @@ public class ClientService implements ClientApiDelegate {
     @Autowired
     ClientBusiness clientBusiness;
 
-
-
-
-
     @Override
     public Mono<ResponseEntity<StatusResponse>> addClient(Mono<ClientObject> clientObject, ServerWebExchange exchange) {
         return clientBusiness.saveClient(clientObject,exchange);

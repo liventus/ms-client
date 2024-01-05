@@ -50,7 +50,7 @@ class ClientBusinessImplTest {
   void saveClientCaseFail() {
     ClientObject clientObject = new ClientObject();
     clientObject.setTipo("otro tipo");
-    when(clientRepository.insert((ClientEntity) any())).thenReturn(Mono.just(new ClientEntity()));
+
     Mono<ResponseEntity<StatusResponse>> resultMono = clientBusiness.saveClient(Mono.just(clientObject), null);
     StepVerifier.create(resultMono)
         .expectNextMatches(responseEntity -> {
@@ -60,6 +60,5 @@ class ClientBusinessImplTest {
         })
         .verifyComplete();
   }
-
 
 }
