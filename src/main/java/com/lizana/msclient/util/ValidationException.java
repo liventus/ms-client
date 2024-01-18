@@ -8,12 +8,10 @@ import org.springframework.http.HttpStatus;
 
 
 public class ValidationException extends RuntimeException {
-
-
     private  StatusResponse statusResponse;
 
     public ValidationException(int codigo, String descripcion, ClientObject clientObject) {
-
+        super.getMessage();
         this.statusResponse = new StatusResponse();
         this.statusResponse.setCode(codigo);
         this.statusResponse.setDescription(descripcion);
